@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,39 +10,39 @@ namespace queue_at_the_store
     {
         static void Main(string[] args)
         {
-            int processedReceipt;
+            int cursorPositionSumReceiptY = 40;
+            int cursorPositionSumReceiptX = 0;
             int sumReceipt = 0;
-            Queue<int> cashReceipt = new Queue<int>();
-            cashReceipt.Enqueue(571);
-            cashReceipt.Enqueue(634);
-            cashReceipt.Enqueue(552);
-            cashReceipt.Enqueue(573);
-            cashReceipt.Enqueue(325);
-            cashReceipt.Enqueue(292);
-            cashReceipt.Enqueue(358);
-            cashReceipt.Enqueue(257);
-            cashReceipt.Enqueue(352);
-            cashReceipt.Enqueue(226);          
+            Queue<int> cashReceipts = new Queue<int>();
+            cashReceipts.Enqueue(571);
+            cashReceipts.Enqueue(634);
+            cashReceipts.Enqueue(552);
+            cashReceipts.Enqueue(573);
+            cashReceipts.Enqueue(325);
+            cashReceipts.Enqueue(292);
+            cashReceipts.Enqueue(358);
+            cashReceipts.Enqueue(257);
+            cashReceipts.Enqueue(352);
+            cashReceipts.Enqueue(226);          
 
-            while (cashReceipt.Any())
+            while (cashReceipts.Count > 0)
             {
-                Console.SetCursorPosition(40, 0);
+                Console.SetCursorPosition(cursorPositionSumReceiptY, cursorPositionSumReceiptX);
                 Console.Write(sumReceipt);
                 Console.SetCursorPosition(0, 0);
 
-                foreach (var receipt in cashReceipt)
+                foreach (var receipts in cashReceipts)
                 {
-                    Console.WriteLine(receipt);
+                    Console.WriteLine(receipts);
                 }
                 Console.ReadKey();
 
-                processedReceipt = cashReceipt.Peek();
-                sumReceipt = sumReceipt + processedReceipt;
-                cashReceipt.Dequeue();
+                sumReceipt += cashReceipts.Peek();
+                cashReceipts.Dequeue();
                 
-                Console.WriteLine(sumReceipt);
                 Console.Clear();
             }
+
             Console.WriteLine("Очередь кончилась)");
         }        
     }
